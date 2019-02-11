@@ -80,3 +80,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/bin/
+.project
+.classpath
