@@ -1,9 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class Fenetre extends JFrame implements MouseListener {
+/**
+ * The type Fenetre.
+ */
+public class Fenetre extends JFrame {
 
+    /**
+     * Instantiates a new Fenetre.
+     */
     public Fenetre() {
 
         this.setTitle("Les pigeons");
@@ -19,37 +27,30 @@ public class Fenetre extends JFrame implements MouseListener {
 
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                boutons[i][j] = new JButton();
-                boutons[i][j].setBackground(Color.white);
-                boutons[i][j].setBorderPainted(false);
+                boutons[i][j] = new Case();
                 panel.add(boutons[i][j]);
-            }
-        }
-
-
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                boutons[i][j].addMouseListener(this);
             }
         }
 
         this.setVisible(true);
 
-
+        this.refresh();
     }
 
-    public void mouseClicked(MouseEvent event) {
+    /**
+     * Refresh.
+     */
+    public void refresh() {
+        TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                System.out.println(3000 + " seconds");
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, new Date(), 3000);
     }
-
-    public void mouseEntered(MouseEvent event) {
-
-    }
-
-    public void mouseExited(MouseEvent event) { }
-
-    public void mousePressed(MouseEvent event) { }
-
-    public void mouseReleased(MouseEvent event) { }
-
 
 }

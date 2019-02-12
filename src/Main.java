@@ -10,7 +10,6 @@ public class Main {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        System.out.println(Config.getPropValues("pigeon"));
-        System.out.println(Config.getPropValues("toto"));
+        Fenetre fenetre = new Fenetre();
     }
 }

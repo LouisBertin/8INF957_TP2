@@ -1,20 +1,28 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public abstract class Case {
-	private Coordonnees coordonnees;
+/**
+ * The type Case.
+ */
+public class Case extends JButton implements ActionListener {
 
-	public Case(Coordonnees coordonnees) {
-		this.coordonnees = coordonnees;
-	}
-	
-	public Case(int x, int y) {
-		this.coordonnees = new Coordonnees(x, y);
-	}
-
-	public void setCoordonnees(Coordonnees coordonnees) {
-		this.coordonnees = coordonnees;
+	/**
+	 * Instantiates a new Case.
+	 */
+	public Case() {
+		this.addActionListener(this);
 	}
 
-	public Coordonnees getCoordonnees() {
-		return coordonnees;
+    /**
+     * Click on Case
+     * @param e
+     */
+	public void actionPerformed(ActionEvent e) {
+		this.setText("food");
+		this.setOpaque(true);
+		this.setBackground(Color.blue);
 	}
+
 }
