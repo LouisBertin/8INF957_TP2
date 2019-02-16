@@ -22,18 +22,20 @@ public class Fenetre extends JFrame {
         JPanel panel = new JPanel();
         panel.setSize(1000, 500);
         this.setContentPane(panel);
-        this.setLayout(new GridLayout(20, 20));
-        JButton[][] boutons = new JButton[20][20];
+        this.setLayout(new GridLayout(10, 10));
+        JButton[][] boutons = new JButton[10][10];
 
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                boutons[i][j] = new Case();
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                boutons[i][j] = new Case(i, j);
+
                 panel.add(boutons[i][j]);
             }
         }
 
-        this.setVisible(true);
+        // TODO : créer l'objet grille à partir de l'Array de boutons
 
+        this.setVisible(true);
         this.refresh();
     }
 
@@ -45,7 +47,7 @@ public class Fenetre extends JFrame {
 
             @Override
             public void run() {
-                System.out.println(3000 + " seconds");
+                //System.out.println(3 + " seconds");
             }
         };
 
