@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * The type Fenetre.
@@ -14,6 +13,7 @@ public class Fenetre extends JFrame {
      */
     public Fenetre() {
 
+        // create panel
         this.setTitle("Les pigeons");
         this.setSize(1000, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,13 +28,13 @@ public class Fenetre extends JFrame {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 boutons[i][j] = new Case(i, j);
-
                 panel.add(boutons[i][j]);
             }
         }
 
-        // TODO : créer l'objet grille à partir de l'Array de boutons
-
+        // convert components to grille
+        this.convertComponentsToGrille(boutons);
+        // display window
         this.setVisible(true);
         this.refresh();
     }
@@ -53,6 +53,23 @@ public class Fenetre extends JFrame {
 
         Timer timer = new Timer();
         timer.schedule(task, new Date(), 3000);
+    }
+
+    /**
+     * Convert components array to Grille.
+     * @param boutons
+     */
+    private void convertComponentsToGrille(JButton[][] boutons) {
+        ArrayList<Case> cases = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Case Case = (Case) boutons[i][j];
+                cases.add(Case);
+            }
+        }
+
+        Grille grille = new Grille(cases);
     }
 
 }
