@@ -47,9 +47,6 @@ public class Fenetre extends JFrame {
             }
         }
 
-        // convert components to grille
-        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
-
         // build panel
         this.buildPanel(boutons, panel);
     }
@@ -105,14 +102,13 @@ public class Fenetre extends JFrame {
             }
         }
 
+        // fetch random values
+        int[] random = uniqueRandomNumbers(96, 4);
         // swap objects
         for (int i = 0; i <= 3; i++) {
-            //TODO: si le programme crash ici c'est que le même nombre random est généré.. il faut le gérer
-            Random r = new Random();
-            int result = r.nextInt(96);
             int[] caseCoordinates = new int[2];
 
-            Case Case = (Case) items.get(result);
+            Case Case = (Case) items.get(random[i]);
             Pigeon pigeon = (Pigeon) items.get(96 + i);
 
             // save case coordinates
@@ -126,10 +122,31 @@ public class Fenetre extends JFrame {
             pigeon.setCoordinateY(caseCoordinates[1]);
 
             // swap items in collections
-            Collections.swap(items, result, 96 + i);
+            Collections.swap(items, random[i], 96 + i);
         }
 
         return items;
+    }
+
+    /**
+     * Generate unique random numbers.
+     * @param range
+     * @param bound
+     * @return
+     */
+    private static int[] uniqueRandomNumbers(int range, int bound) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int[] numbers = new int[bound];
+
+        for (int i=1; i < range; i++) {
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for (int i=0; i < bound; i++) {
+            numbers[i] = list.get(i);
+        }
+
+        return numbers;
     }
 
 }
