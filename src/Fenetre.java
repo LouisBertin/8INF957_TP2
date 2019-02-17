@@ -35,18 +35,8 @@ public class Fenetre extends JFrame {
             }
         }
 
-        // convert components to grille
-        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
-
         // build panel
-        for (int i = 0; i < componentsSorted.size(); i++) {
-            JButton button = (JButton) componentsSorted.get(i);
-            panel.add(button);
-        }
-
-        // create grille
-        Grille grille = new Grille(componentsSorted);
-
+        this.buildPanel(boutons, panel);
         // display window
         this.setVisible(true);
         this.refresh();
@@ -66,6 +56,25 @@ public class Fenetre extends JFrame {
 
         Timer timer = new Timer();
         timer.schedule(task, new Date(), 3000);
+    }
+
+    /**
+     * Build panel.
+     * @param boutons
+     * @param panel
+     */
+    private void buildPanel(JButton[][] boutons, JPanel panel) {
+        // convert components to grille
+        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
+
+        // build panel
+        for (int i = 0; i < componentsSorted.size(); i++) {
+            JButton button = (JButton) componentsSorted.get(i);
+            panel.add(button);
+        }
+
+        // create grille
+        Grille grille = new Grille(componentsSorted);
     }
 
     /**
