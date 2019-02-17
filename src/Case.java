@@ -36,8 +36,6 @@ public class Case extends JButton implements ActionListener {
      */
 	public void actionPerformed(ActionEvent e) {
 		this.setText("food");
-		System.out.println(this.getCoordinateX());
-		System.out.println(this.getCoordinateY());
 		this.setOpaque(true);
 		this.setBackground(Color.blue);
 	}

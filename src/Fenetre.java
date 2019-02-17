@@ -44,6 +44,9 @@ public class Fenetre extends JFrame {
             panel.add(button);
         }
 
+        // create grille
+        Grille grille = new Grille(componentsSorted);
+
         // display window
         this.setVisible(true);
         this.refresh();
@@ -87,8 +90,6 @@ public class Fenetre extends JFrame {
             int result = r.nextInt(96);
             int[] caseCoordinates = new int[2];
 
-            System.out.println(result);
-
             Case Case = (Case) items.get(result);
             Pigeon pigeon = (Pigeon) items.get(96 + i);
 
@@ -98,9 +99,9 @@ public class Fenetre extends JFrame {
 
             // exchange coordinates
             Case.setCoordinateX(pigeon.getCoordinateX());
-            Case.setCoordinateX(pigeon.getCoordinateY());
+            Case.setCoordinateY(pigeon.getCoordinateY());
             pigeon.setCoordinateX(caseCoordinates[0]);
-            pigeon.setCoordinateX(caseCoordinates[1]);
+            pigeon.setCoordinateY(caseCoordinates[1]);
 
             // swap items in collections
             Collections.swap(items, result, 96 + i);

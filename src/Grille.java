@@ -9,7 +9,7 @@ public class Grille {
 	/**
 	 * ArrayList of Cases.
 	 */
-	private ArrayList<Case> grille;
+	private ArrayList<Object> grille;
 	/**
 	 * The Nombre colonne.
 	 */
@@ -24,7 +24,7 @@ public class Grille {
 	 *
 	 * @param Cases the cases
 	 */
-	public Grille(ArrayList<Case> Cases) {
+	public Grille(ArrayList<Object> Cases) {
 		setGrille(Cases);
 	}
 
@@ -33,7 +33,7 @@ public class Grille {
 	 *
 	 * @return the grille
 	 */
-	public ArrayList<Case> getGrille() {
+	public ArrayList<Object> getGrille() {
 		return grille;
 	}
 
@@ -42,8 +42,7 @@ public class Grille {
 	 *
 	 * @param grille the grille
 	 */
-	public void setGrille(ArrayList<Case> grille) {
+	public void setGrille(ArrayList<Object> grille) {
 		this.grille = grille;
 	}
-
 }
