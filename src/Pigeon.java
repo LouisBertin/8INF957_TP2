@@ -1,20 +1,19 @@
+import javax.swing.*;
+
 /**
  * The type Pigeon.
  */
-public class Pigeon {
+public class Pigeon extends JButton {
 	private EtatPigeon etat;
 
-	public Pigeon() {
-	}
-
 	/**
-	 * Instantiates a new Pigeon.
-	 *
-	 * @param coordonnees the coordonnees
+	 * X coordinate
 	 */
-	public Pigeon(Coordonnees coordonnees) {
-		etat = EtatPigeon.REVEILLE;
-	}
+	private int coordinateX;
+	/**
+	 * Y coordinate
+	 */
+	private int coordinateY;
 
 	/**
 	 * Instantiates a new Pigeon.
@@ -24,6 +23,45 @@ public class Pigeon {
 	 */
 	public Pigeon(int x, int y) {
 		etat = EtatPigeon.REVEILLE;
+
+		this.setText("pigeon");
+		setCoordinateX(x);
+		setCoordinateY(y);
 	}
 
+	/**
+	 * Gets coordinate x.
+	 *
+	 * @return the coordinate x
+	 */
+	public int getCoordinateX() {
+		return coordinateX;
+	}
+
+	/**
+	 * Sets coordinate x.
+	 *
+	 * @param coordinateX the coordinate x
+	 */
+	public void setCoordinateX(int coordinateX) {
+		this.coordinateX = coordinateX;
+	}
+
+	/**
+	 * Gets coordinate y.
+	 *
+	 * @return the coordinate y
+	 */
+	public int getCoordinateY() {
+		return coordinateY;
+	}
+
+	/**
+	 * Sets coordinate y.
+	 *
+	 * @param coordinateY the coordinate y
+	 */
+	public void setCoordinateY(int coordinateY) {
+		this.coordinateY = coordinateY;
+	}
 }
