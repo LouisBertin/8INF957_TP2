@@ -19,6 +19,18 @@ public class Fenetre extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        // initialize panel
+        this.init();
+
+        // display window
+        this.setVisible(true);
+        this.refresh();
+    }
+
+    /**
+     * Initialize window.
+     */
+    private void init() {
         JPanel panel = new JPanel();
 
         panel.setSize(1000, 500);
@@ -35,21 +47,8 @@ public class Fenetre extends JFrame {
             }
         }
 
-        // convert components to grille
-        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
-
         // build panel
-        for (int i = 0; i < componentsSorted.size(); i++) {
-            JButton button = (JButton) componentsSorted.get(i);
-            panel.add(button);
-        }
-
-        // create grille
-        Grille grille = new Grille(componentsSorted);
-
-        // display window
-        this.setVisible(true);
-        this.refresh();
+        this.buildPanel(boutons, panel);
     }
 
     /**
@@ -69,8 +68,28 @@ public class Fenetre extends JFrame {
     }
 
     /**
-     * Convert components array to Grille.
+     * Build panel.
      * @param boutons
+     * @param panel
+     */
+    private void buildPanel(JButton[][] boutons, JPanel panel) {
+        // convert components to grille
+        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
+
+        // build panel
+        for (int i = 0; i < componentsSorted.size(); i++) {
+            JButton button = (JButton) componentsSorted.get(i);
+            panel.add(button);
+        }
+
+        // create grille
+        Grille grille = new Grille(componentsSorted);
+    }
+
+    /**
+     * Convert panel to grille.
+     * @param boutons
+     * @return
      */
     private ArrayList convertComponentsToGrille(JButton[][] boutons) {
         ArrayList<Object> items = new ArrayList<>();
