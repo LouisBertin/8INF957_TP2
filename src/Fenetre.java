@@ -19,6 +19,18 @@ public class Fenetre extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
+        // initialize panel
+        this.init();
+
+        // display window
+        this.setVisible(true);
+        this.refresh();
+    }
+
+    /**
+     * Initialize window.
+     */
+    private void init() {
         JPanel panel = new JPanel();
 
         panel.setSize(1000, 500);
@@ -35,11 +47,11 @@ public class Fenetre extends JFrame {
             }
         }
 
+        // convert components to grille
+        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
+
         // build panel
         this.buildPanel(boutons, panel);
-        // display window
-        this.setVisible(true);
-        this.refresh();
     }
 
     /**
@@ -78,8 +90,9 @@ public class Fenetre extends JFrame {
     }
 
     /**
-     * Convert components array to Grille.
+     * Convert panel to grille.
      * @param boutons
+     * @return
      */
     private ArrayList convertComponentsToGrille(JButton[][] boutons) {
         ArrayList<Object> items = new ArrayList<>();
