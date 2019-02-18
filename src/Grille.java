@@ -15,15 +15,6 @@ public class Grille {
 	private static Grille INSTANCE = null;
 
 	/**
-	 * The Nombre colonne.
-	 */
-	static final int nombre_colonne = Integer.parseInt(Config.getPropValues("nombre_colonne"));
-	/**
-	 * The Nombre ligne.
-	 */
-	static final int nombre_ligne = Integer.parseInt(Config.getPropValues("nombre_ligne"));
-
-	/**
 	 * Instantiates a new Grille.
 	 *
 	 */

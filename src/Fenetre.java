@@ -139,7 +139,7 @@ public class Fenetre extends JFrame {
         int[] numbers = new int[bound];
 
         for (int i=1; i < range; i++) {
-            list.add(new Integer(i));
+            list.add(i);
         }
         Collections.shuffle(list);
         for (int i=0; i < bound; i++) {
