@@ -10,6 +10,10 @@ public class Grille {
 	 * ArrayList of Cases.
 	 */
 	private ArrayList<Object> grille;
+
+	/** Instance unique non préinitialisée */
+	private static Grille INSTANCE = null;
+
 	/**
 	 * The Nombre colonne.
 	 */
@@ -22,10 +26,19 @@ public class Grille {
 	/**
 	 * Instantiates a new Grille.
 	 *
-	 * @param Cases the cases
 	 */
-	public Grille(ArrayList<Object> Cases) {
-		setGrille(Cases);
+	private Grille() { }
+
+	/**
+	 * Return singleton.
+	 * @return
+	 */
+	public static Grille getInstance()
+	{
+		if (INSTANCE == null) {
+			INSTANCE = new Grille();
+		}
+		return INSTANCE;
 	}
 
 	/**

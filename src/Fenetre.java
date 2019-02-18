@@ -74,7 +74,7 @@ public class Fenetre extends JFrame {
      */
     private void buildPanel(JButton[][] boutons, JPanel panel) {
         // convert components to grille
-        ArrayList componentsSorted = this.convertComponentsToGrille(boutons);
+        ArrayList<Object> componentsSorted = this.convertComponentsToGrille(boutons);
 
         // build panel
         for (int i = 0; i < componentsSorted.size(); i++) {
@@ -82,8 +82,8 @@ public class Fenetre extends JFrame {
             panel.add(button);
         }
 
-        // create grille
-        Grille grille = new Grille(componentsSorted);
+        // create grille singleton
+        Grille.getInstance().setGrille(componentsSorted);
     }
 
     /**
@@ -91,7 +91,7 @@ public class Fenetre extends JFrame {
      * @param boutons
      * @return
      */
-    private ArrayList convertComponentsToGrille(JButton[][] boutons) {
+    private ArrayList<Object> convertComponentsToGrille(JButton[][] boutons) {
         ArrayList<Object> items = new ArrayList<>();
 
         // build arrayList
