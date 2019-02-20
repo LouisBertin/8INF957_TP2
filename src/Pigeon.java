@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * The type Pigeon.
  */
-public class Pigeon extends JButton implements Runnable{
+public class Pigeon extends JButton {
 	private EtatPigeon etat;
 	/**
 	 * X coordinate
@@ -66,7 +66,7 @@ public class Pigeon extends JButton implements Runnable{
 		this.coordinateY = coordinateY;
 	}
 
-	@Override
+/*	@Override
 	public void run() {
 		ArrayList<Object> grille = Grille.getInstance().getGrille();
 		ArrayList<Case> nourritures = new ArrayList<>();
@@ -86,5 +86,5 @@ public class Pigeon extends JButton implements Runnable{
 					choisi = nourriture;
 			}
 		}
-	}
+	}*/
 }

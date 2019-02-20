@@ -23,7 +23,8 @@ public class Grille {
 
 	/**
 	 * Return singleton.
-	 * @return
+	 *
+	 * @return instance
 	 */
 	public static Grille getInstance()
 	{
@@ -51,5 +52,15 @@ public class Grille {
 		this.grille = grille;
 	}
 
+	/**
+	 * Replace.
+	 *
+	 * @param objectToRemove the object to remove
+	 * @param newObject      the new object
+	 */
+	public void replace(Object objectToRemove, Object newObject) {
+		int index = getGrille().indexOf(objectToRemove);
+		getGrille().set(index, newObject);
+	}
 
 }

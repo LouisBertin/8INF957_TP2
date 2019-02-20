@@ -1,19 +1,26 @@
+import javax.swing.*;
 import java.util.Date;
-import java.util.Timer;
 
-public class Nourriture{
+public class Nourriture extends JButton {
 
 	private EtatNourriture etat;
-
 	private Date t;
+	/**
+	 * X coordinate
+	 */
+	private int coordinateX;
+	/**
+	 * Y coordinate
+	 */
+	private int coordinateY;
 
-	public Nourriture(Coordonnees coordonnees) {
-		etat = EtatNourriture.FRAICHE;
-	}
-
-	public Nourriture(int x, int y) {
+	public Nourriture(int coordinateX, int coordinateY) {
 		etat = EtatNourriture.FRAICHE;
 		t = new Date();
+		this.setText("bouffe");
+
+		this.coordinateX = coordinateX;
+		this.coordinateY = coordinateY;
 	}
 
 	public EtatNourriture getEtat() {

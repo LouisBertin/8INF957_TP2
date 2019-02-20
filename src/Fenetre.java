@@ -9,6 +9,11 @@ import java.util.Timer;
 public class Fenetre extends JFrame {
 
     /**
+     * The constant panel.
+     */
+    public static JPanel panel;
+
+    /**
      * Instantiates a new Fenetre.
      */
     public Fenetre() {
@@ -31,7 +36,7 @@ public class Fenetre extends JFrame {
      * Initialize window.
      */
     private void init() {
-        JPanel panel = new JPanel();
+        panel = new JPanel();
 
         panel.setSize(1000, 500);
         this.setContentPane(panel);
@@ -147,6 +152,13 @@ public class Fenetre extends JFrame {
         }
 
         return numbers;
+    }
+
+    /**
+     * Repaint window.
+     */
+    public static void repaintWindow() {
+        panel.repaint();
     }
 
 }
