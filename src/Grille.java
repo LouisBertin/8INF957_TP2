@@ -1,4 +1,7 @@
+import com.sun.java.util.jar.pack.Package;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 
 /**
@@ -64,6 +67,33 @@ public class Grille extends Observable {
 		getGrille().set(index, newObject);
 		setChanged();
 		notifyObservers();
+	}
+
+	public void deplacementPigeon(Pigeon pigeon, int to) {
+		int index = Grille.getInstance().getGrille().indexOf(pigeon);
+		Object objetTo = Grille.getInstance().getGrille().get(index+to);
+		if(objetTo instanceof Nourriture) {
+			replace(objetTo, new Case(0, 0));
+		} else {
+			Collections.swap(Grille.getInstance().getGrille(), index, index+to);
+			setChanged();
+			notifyObservers();
+		}
+
+	}
+
+	public ArrayList<Object> recupererInstance(String c){
+		ArrayList<Object> objects = new ArrayList<>();
+		try {
+			Class classe = Class.forName(c);
+			for(Object a : grille){
+				if(a instanceof classe){
+					objects.add(a);
+				}
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

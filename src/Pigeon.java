@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * The type Pigeon.
  */
-public class Pigeon extends JButton {
+public class Pigeon extends JButton implements Runnable {
+
 	private EtatPigeon etat;
 	/**
 	 * X coordinate
@@ -29,6 +31,15 @@ public class Pigeon extends JButton {
 		setCoordinateY(y);
 
 	}
+
+	public EtatPigeon getEtat() {
+		return etat;
+	}
+
+	public void setEtat(EtatPigeon etat) {
+		this.etat = etat;
+	}
+
 
 	/**
 	 * Gets coordinate x.
@@ -66,25 +77,45 @@ public class Pigeon extends JButton {
 		this.coordinateY = coordinateY;
 	}
 
-/*	@Override
+	@Override
 	public void run() {
 		ArrayList<Object> grille = Grille.getInstance().getGrille();
-		ArrayList<Case> nourritures = new ArrayList<>();
+		ArrayList<Nourriture> nourritures = new ArrayList<>();
 		for(Object a : grille){
-			if(a instanceof Case){
-				if(!((Case) a).getNourriture().equals(null)){
-					if(((Case) a).getNourriture().getEtat().equals(EtatNourriture.FRAICHE)){
-						nourritures.add((Case) a);
-					}
-				}
+			if(a instanceof Nourriture){
+				nourritures.add((Nourriture) a);
 			}
 		}
 
-		Case choisi = null;
-		for( Case nourriture  : nourritures) {
-			if(nourriture.getNourriture().getT().before(choisi.getNourriture().getT()) || choisi.equals(null)){
+		if(nourritures.isEmpty()){
+			setEtat(EtatPigeon.ENDORMI);
+		}
+		else{
+			setEtat(EtatPigeon.REVEILLE);
+			Nourriture choisi = null;
+			for( Nourriture nourriture  : nourritures) {
+				if(nourriture.getT().before(choisi.getT()) || choisi.equals(null)){
 					choisi = nourriture;
+				}
+			}
+			int indexNourriture = grille.indexOf(choisi);
+
+			int position = getCoordinateX() + 10*getCoordinateY();
+
+			int deplacement = indexNourriture - position;
+
+			if(deplacement <= -10){
+				Grille.getInstance().deplacementPigeon(this, 10);
+			}
+			else if(deplacement >= 10){
+				Grille.getInstance().deplacementPigeon(this, -10);
+			}
+			else if(deplacement < 0){
+				Grille.getInstance().deplacementPigeon(this, 1);
+			}
+			else if(deplacement > 0){
+				Grille.getInstance().deplacementPigeon(this, -1);
 			}
 		}
-	}*/
+	}
 }

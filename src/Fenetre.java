@@ -91,6 +91,8 @@ public class Fenetre extends JFrame implements Observer {
         // create grille singleton
         Grille.getInstance().setGrille(componentsSorted);
         Grille.getInstance().addObserver(this);
+
+        for
     }
 
     /**
