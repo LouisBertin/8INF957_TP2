@@ -18,7 +18,8 @@ public class Grille {
 	 * Instantiates a new Grille.
 	 *
 	 */
-	private Grille() { }
+	private Grille() {
+	}
 
 	/**
 	 * Return singleton.
@@ -49,4 +50,6 @@ public class Grille {
 	public void setGrille(ArrayList<Object> grille) {
 		this.grille = grille;
 	}
+
+
 }

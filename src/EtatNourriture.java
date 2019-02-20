@@ -1,7 +1,7 @@
 
 public enum EtatNourriture {
-	FRAICHE("La nourriture est fraîche."),
-    PERIMEE("La nourriture est perimée.");
+	FRAICHE("La nourriture est fraÃ®che."),
+    PERIMEE("La nourriture est perimÃ©e.");
 
     private String name = "";
 

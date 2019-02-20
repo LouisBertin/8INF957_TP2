@@ -17,6 +17,8 @@ public class Case extends JButton implements ActionListener {
 	 */
 	private int coordinateY;
 
+	private Nourriture nourriture;
+
 	/**
 	 * Instantiates a new Case.
 	 *
@@ -38,6 +40,7 @@ public class Case extends JButton implements ActionListener {
 		this.setText("food");
 		this.setOpaque(true);
 		this.setBackground(Color.blue);
+		nourriture = new Nourriture(getCoordinateX(),getCoordinateY());
 	}
 
 	/**
@@ -75,4 +78,13 @@ public class Case extends JButton implements ActionListener {
 	public void setCoordinateY(int coordinateY) {
 		this.coordinateY = coordinateY;
 	}
+
+	public Nourriture getNourriture() {
+		return nourriture;
+	}
+
+	public void setNourriture(Nourriture nourriture) {
+		this.nourriture = nourriture;
+	}
+
 }

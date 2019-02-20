@@ -1,11 +1,11 @@
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  * The type Pigeon.
  */
-public class Pigeon extends JButton {
+public class Pigeon extends JButton implements Runnable{
 	private EtatPigeon etat;
-
 	/**
 	 * X coordinate
 	 */
@@ -27,6 +27,7 @@ public class Pigeon extends JButton {
 		this.setText("pigeon");
 		setCoordinateX(x);
 		setCoordinateY(y);
+
 	}
 
 	/**
@@ -63,5 +64,27 @@ public class Pigeon extends JButton {
 	 */
 	public void setCoordinateY(int coordinateY) {
 		this.coordinateY = coordinateY;
+	}
+
+	@Override
+	public void run() {
+		ArrayList<Object> grille = Grille.getInstance().getGrille();
+		ArrayList<Case> nourritures = new ArrayList<>();
+		for(Object a : grille){
+			if(a instanceof Case){
+				if(!((Case) a).getNourriture().equals(null)){
+					if(((Case) a).getNourriture().getEtat().equals(EtatNourriture.FRAICHE)){
+						nourritures.add((Case) a);
+					}
+				}
+			}
+		}
+
+		Case choisi = null;
+		for( Case nourriture  : nourritures) {
+			if(nourriture.getNourriture().getT().before(choisi.getNourriture().getT()) || choisi.equals(null)){
+					choisi = nourriture;
+			}
+		}
 	}
 }

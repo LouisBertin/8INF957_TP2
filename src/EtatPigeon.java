@@ -1,7 +1,7 @@
 
 public enum EtatPigeon {
 	ENDORMI("Le pigeon est endormi."),
-    REVEILLE("Le pigeon est réveillé.");
+    REVEILLE("Le pigeon est rÃ©veillÃ©.");
 
     private String name = "";
 
