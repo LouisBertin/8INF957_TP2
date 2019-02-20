@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
+
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 /**
  * Il s'agit du modèle de notre grille principale
@@ -65,5 +68,17 @@ public class Grille extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-
+	
+	public void deplacementPigeon(Pigeon pigeon, int to) {
+		int index = Grille.getInstance().getGrille().indexOf(pigeon);
+		Object objetTo = Grille.getInstance().getGrille().get(index+to);
+		if(objetTo instanceof Nourriture) {
+			replace(objetTo, new Case(0, 0));		
+		} else {
+			Collections.swap(Grille.getInstance().getGrille(), index, index+to);	
+			setChanged();
+			notifyObservers();
+		}	
+		
+	}
 }
