@@ -161,6 +161,12 @@ public class Fenetre extends JFrame implements Observer {
      */
     @Override
     public void update(Observable o, Object o1) {
+    	panel.removeAll();
+    	panel.validate();
+    	for(Object objet : Grille.getInstance().getGrille()) {
+    		panel.add((Component) objet);
+    	}
+    	panel.revalidate();
     	panel.repaint();
     	System.out.println("Repaint window");
     }
