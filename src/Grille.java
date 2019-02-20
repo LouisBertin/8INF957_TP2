@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Il s'agit du modèle de notre grille principale
  *
  * @author Orann
  */
-public class Grille {
+public class Grille extends Observable {
 	/**
 	 * ArrayList of Cases.
 	 */
@@ -61,6 +62,8 @@ public class Grille {
 	public void replace(Object objectToRemove, Object newObject) {
 		int index = getGrille().indexOf(objectToRemove);
 		getGrille().set(index, newObject);
+		setChanged();
+		notifyObservers();
 	}
 
 }

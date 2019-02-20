@@ -1,12 +1,13 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.*;
 import java.util.Timer;
-
+import java.util.Observable;
 /**
  * The type Fenetre.
  */
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements Observer {
 
     /**
      * The constant panel.
@@ -89,6 +90,7 @@ public class Fenetre extends JFrame {
 
         // create grille singleton
         Grille.getInstance().setGrille(componentsSorted);
+        Grille.getInstance().addObserver(this);
     }
 
     /**
@@ -157,8 +159,9 @@ public class Fenetre extends JFrame {
     /**
      * Repaint window.
      */
-    public static void repaintWindow() {
-        panel.repaint();
+    @Override
+    public void update(Observable o, Object o1) {
+    	panel.repaint();
+    	System.out.println("Repaint window");
     }
-
 }
