@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 /**
  * Il s'agit du modèle de notre grille principale
  *
