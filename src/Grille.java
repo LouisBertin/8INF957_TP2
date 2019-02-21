@@ -79,23 +79,37 @@ public class Grille extends Observable {
 		int[] destination = new int[2];
 
 		if(objetTo instanceof Nourriture) {
-			replace(objetTo, new Case(0, 0));
+			try {
+				replace(objetTo, new Case(((Case) objetTo).getCoordinateX(), ((Case) objetTo).getCoordinateY()));
+			} catch(Exception e) {
+				System.out.println("Exception "+e+" occured when a pigeon eats food");
+			}
 		} else {
 			if (objetTo instanceof Case) {
 				// store destination coordinates
 				destination[0] = ((Case) objetTo).getCoordinateX();
 				destination[1] = ((Case) objetTo).getCoordinateY();
 				// swap items
-				Collections.swap(Grille.getInstance().getGrille(),
-						index, index+to);
-				// swap coordinates
-				((Case) objetTo).setCoordinateX(pigeon.getCoordinateX());
-				((Case) objetTo).setCoordinateY(pigeon.getCoordinateY());
-				pigeon.setCoordinateX(destination[0]);
-				pigeon.setCoordinateY(destination[1]);
+				try {
+					Collections.swap(Grille.getInstance().getGrille(),
+							index, index+to);
+					// swap coordinates
+					((Case) objetTo).setCoordinateX(pigeon.getCoordinateX());
+					((Case) objetTo).setCoordinateY(pigeon.getCoordinateY());
+					pigeon.setCoordinateX(destination[0]);
+					pigeon.setCoordinateY(destination[1]);
+				} catch (Exception e) {
+					System.out.println("Exception "+e+" occured when a pigeon moves");
+				}
+				
 				// refresh display
-				setChanged();
-				notifyObservers();
+				try {
+					setChanged();
+					notifyObservers();
+				} catch (Exception e) {
+					System.out.println("Exception "+e+" occured when the display refreshes");
+				}
+				
 			}
 		}
 
