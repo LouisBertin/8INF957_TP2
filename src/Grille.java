@@ -122,16 +122,17 @@ public class Grille extends Observable {
 	 * Shuffle pigeon et case.
 	 */
 	public void shufflePigeonEtCase() {
-		ArrayList<Object> pigeons = getAllByClass(Pigeon.class);
-		ArrayList<Object> Cases = getAllByClass(Case.class);
+		// fetch class
+		ArrayList<Pigeon> pigeons = getAllByClass(Pigeon.class);
+		ArrayList<Case> Cases = getAllByClass(Case.class);
 
 		for (int i = 0; i < pigeons.size(); i++) {
 			Random rand = new Random();
 			int randomNum = rand.nextInt(Cases.size());
 
 			int[] destination = new int[2];
-			Case Case = (Case) Cases.get(randomNum);
-			Pigeon pigeon = (Pigeon) pigeons.get(i);
+			Case Case = Cases.get(randomNum);
+			Pigeon pigeon = pigeons.get(i);
 			// store dest coordinates
 			destination[0] = Case.getCoordinateX();
 			destination[1] = Case.getCoordinateY();
@@ -144,10 +145,10 @@ public class Grille extends Observable {
 			int pigeonIndex = getGrille().indexOf(pigeon);
 			int caseIndex = getGrille().indexOf(Case);
 			Collections.swap(getGrille(), pigeonIndex, caseIndex);
-			setChanged();
-			notifyObservers();
 		}
 
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -156,7 +157,7 @@ public class Grille extends Observable {
 	 * @param Class the class
 	 * @return the all by class
 	 */
-	public ArrayList<Object> getAllByClass(Class Class) {
+	public ArrayList getAllByClass(Class Class) {
 		ArrayList<Object> results = new ArrayList<>();
 
 		for (Object objet : getGrille()) {

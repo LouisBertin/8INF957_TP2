@@ -36,9 +36,6 @@ public class Case extends JButton implements ActionListener {
      * @param e
      */
 	public void actionPerformed(ActionEvent e) {
-		this.setText("food");
-		this.setOpaque(true);
-		this.setBackground(Color.blue);
 		Nourriture nourriture = new Nourriture(this.coordinateX, this.coordinateY);
 
 		Grille.getInstance().replace(this, nourriture);

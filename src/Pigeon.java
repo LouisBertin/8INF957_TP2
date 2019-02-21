@@ -92,16 +92,7 @@ public class Pigeon extends JButton implements Runnable {
 				}
 			}
 
-			double probabilite = Main.probabilite;
-			double chance = Main.chance;
-
 			if(nourritures.isEmpty()){
-				/*if(chance < probabilite){
-					setEtat(EtatPigeon.REVEILLE);
-				}
-				else{
-					setEtat(EtatPigeon.ENDORMI);
-				}*/
 				setEtat(EtatPigeon.ENDORMI);
 			}
 			else{
