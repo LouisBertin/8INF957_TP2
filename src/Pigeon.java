@@ -83,12 +83,7 @@ public class Pigeon extends JButton implements Runnable {
 			ArrayList<Nourriture> nourritures = new ArrayList<>();
 			for(Object a :Grille.getInstance().getGrille()){
 				if(a instanceof Nourriture){
-					if(((Nourriture) a).getT().getTime() > 60000){
-						((Nourriture) a).setEtat(EtatNourriture.PERIMEE);
-					}
-					else{
-						nourritures.add((Nourriture) a);
-					}
+					nourritures.add((Nourriture) a);
 				}
 			}
 

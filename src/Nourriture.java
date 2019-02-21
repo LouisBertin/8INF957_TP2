@@ -29,7 +29,10 @@ public class Nourriture extends JButton {
 
 	public void setEtat(EtatNourriture etat) {
 		this.etat = etat;
-		this.setText("Périmée");
+		if(etat == EtatNourriture.PERIMEE)
+			this.setText("Périmée");
+		else
+			this.setText("bouffe");
 	}
 
 	public Date getT() {
