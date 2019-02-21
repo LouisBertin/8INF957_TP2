@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
+import java.util.Random;
 
 /**
  * Il s'agit du modèle de notre grille principale
@@ -71,7 +72,7 @@ public class Grille extends Observable {
 	 * Deplacement pigeon.
 	 *
 	 * @param pigeon the pigeon
-	 * @param to destination index
+	 * @param to     destination index
 	 */
 	public void deplacementPigeon(Pigeon pigeon, int to) {
 		int index = Grille.getInstance().getGrille().indexOf(pigeon);
@@ -112,7 +113,53 @@ public class Grille extends Observable {
 				
 			}
 		}
+	}
 
+	/**
+	 * Shuffle pigeon et case.
+	 */
+	public void shufflePigeonEtCase() {
+		ArrayList<Object> pigeons = getAllByClass(Pigeon.class);
+		ArrayList<Object> Cases = getAllByClass(Case.class);
+
+		Random rand = new Random();
+		int randomNum = rand.nextInt(Cases.size());
+
+		for (int i = 0; i < pigeons.size(); i++) {
+			int[] destination = new int[2];
+			Case Case = (Case) Cases.get(randomNum);
+			Pigeon pigeon = (Pigeon) pigeons.get(i);
+			// store dest coordinates
+			destination[0] = Case.getCoordinateX();
+			destination[1] = Case.getCoordinateY();
+			// swap coordinates
+			Case.setCoordinateX(pigeon.getCoordinateX());
+			Case.setCoordinateY(pigeon.getCoordinateY());
+			pigeon.setCoordinateX(destination[0]);
+			pigeon.setCoordinateY(destination[1]);
+			// swap items
+			int pigeonIndex = getGrille().indexOf(pigeon);
+			int caseIndex = getGrille().indexOf(Case);
+			Collections.swap(getGrille(), pigeonIndex, caseIndex);
+		}
+	}
+
+	/**
+	 * Gets all by class.
+	 *
+	 * @param Class the class
+	 * @return the all by class
+	 */
+	public ArrayList<Object> getAllByClass(Class Class) {
+		ArrayList<Object> results = new ArrayList<>();
+
+		for (Object objet : getGrille()) {
+			if (Class.isInstance(objet)) {
+				results.add(objet);
+			}
+		}
+
+		return results;
 	}
 
 }
