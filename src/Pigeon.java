@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  * The type Pigeon.
@@ -80,11 +80,15 @@ public class Pigeon extends JButton implements Runnable {
 
 	@Override
 	public void run() {
-			ArrayList<Object> grille = Grille.getInstance().getGrille();
 			ArrayList<Nourriture> nourritures = new ArrayList<>();
-			for(Object a : grille){
+			for(Object a :Grille.getInstance().getGrille()){
 				if(a instanceof Nourriture){
-					nourritures.add((Nourriture) a);
+					if(((Nourriture) a).getT().getTime() > 60000){
+						((Nourriture) a).setEtat(EtatNourriture.PERIMEE);
+					}
+					else{
+						nourritures.add((Nourriture) a);
+					}
 				}
 			}
 
@@ -102,8 +106,10 @@ public class Pigeon extends JButton implements Runnable {
 
 				int indexNourriture = Grille.getInstance().getGrille().indexOf(choisi);
 
-				int x = indexNourriture%10;
-				int y = indexNourriture/10;
+				int y = indexNourriture%10;
+				int x = indexNourriture/10;
+
+				System.out.println(getCoordinateX()+"/"+getCoordinateY());
 
 
 				if(x < getCoordinateX()){
@@ -112,7 +118,6 @@ public class Pigeon extends JButton implements Runnable {
 				else if(x > getCoordinateX()){
 					Grille.getInstance().deplacementPigeon(this, 10);
 				}
-
 				else if(y < getCoordinateY()){
 					Grille.getInstance().deplacementPigeon(this, -1);
 				}
@@ -121,10 +126,5 @@ public class Pigeon extends JButton implements Runnable {
 				}
 
 			}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }

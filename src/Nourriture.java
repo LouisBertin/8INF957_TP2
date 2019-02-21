@@ -29,6 +29,7 @@ public class Nourriture extends JButton {
 
 	public void setEtat(EtatNourriture etat) {
 		this.etat = etat;
+		this.setText("Périmée");
 	}
 
 	public Date getT() {
