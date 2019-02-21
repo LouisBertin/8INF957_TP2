@@ -1,9 +1,14 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The type Main.
  */
 public class Main {
+
+
+    public static double probabilite = 0;
+    public static double chance = 0;
 
     /**
      * The entry point of application.
@@ -20,6 +25,9 @@ public class Main {
         }
 
         while(true){
+            probabilite = Math.random();
+            Random r = new Random();
+            chance = r.nextDouble();
             for(Pigeon p : pigeons){
                 p.run();
             }
