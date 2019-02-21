@@ -17,6 +17,7 @@ public class Pigeon extends JButton implements Runnable {
 	 */
 	private int coordinateY;
 
+
 	/**
 	 * Instantiates a new Pigeon.
 	 *
@@ -79,43 +80,51 @@ public class Pigeon extends JButton implements Runnable {
 
 	@Override
 	public void run() {
-		ArrayList<Object> grille = Grille.getInstance().getGrille();
-		ArrayList<Nourriture> nourritures = new ArrayList<>();
-		for(Object a : grille){
-			if(a instanceof Nourriture){
-				nourritures.add((Nourriture) a);
-			}
-		}
-
-		if(nourritures.isEmpty()){
-			setEtat(EtatPigeon.ENDORMI);
-		}
-		else{
-			setEtat(EtatPigeon.REVEILLE);
-			Nourriture choisi = null;
-			for( Nourriture nourriture  : nourritures) {
-				if(nourriture.getT().before(choisi.getT()) || choisi.equals(null)){
-					choisi = nourriture;
+			ArrayList<Object> grille = Grille.getInstance().getGrille();
+			ArrayList<Nourriture> nourritures = new ArrayList<>();
+			for(Object a : grille){
+				if(a instanceof Nourriture){
+					nourritures.add((Nourriture) a);
 				}
 			}
-			int indexNourriture = grille.indexOf(choisi);
 
-			int position = getCoordinateX() + 10*getCoordinateY();
+			if(nourritures.isEmpty()){
+				setEtat(EtatPigeon.ENDORMI);
+			}
+			else{
+				setEtat(EtatPigeon.REVEILLE);
+				Nourriture choisi = nourritures.get(0);
+				for( Nourriture nourriture  : nourritures) {
+					if(nourriture.getT().after(choisi.getT())){
+						choisi = nourriture;
+					}
+				}
 
-			int deplacement = indexNourriture - position;
+				int indexNourriture = Grille.getInstance().getGrille().indexOf(choisi);
 
-			if(deplacement <= -10){
-				Grille.getInstance().deplacementPigeon(this, 10);
+				int x = indexNourriture%10;
+				int y = indexNourriture/10;
+
+
+				if(x < getCoordinateX()){
+					Grille.getInstance().deplacementPigeon(this, -10);
+				}
+				else if(x > getCoordinateX()){
+					Grille.getInstance().deplacementPigeon(this, 10);
+				}
+
+				else if(y < getCoordinateY()){
+					Grille.getInstance().deplacementPigeon(this, -1);
+				}
+				else if(y > getCoordinateY()){
+					Grille.getInstance().deplacementPigeon(this, 1);
+				}
+
 			}
-			else if(deplacement >= 10){
-				Grille.getInstance().deplacementPigeon(this, -10);
-			}
-			else if(deplacement < 0){
-				Grille.getInstance().deplacementPigeon(this, 1);
-			}
-			else if(deplacement > 0){
-				Grille.getInstance().deplacementPigeon(this, -1);
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }

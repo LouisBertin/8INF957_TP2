@@ -1,5 +1,3 @@
-import com.sun.java.util.jar.pack.Package;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
@@ -82,7 +80,7 @@ public class Grille extends Observable {
 
 	}
 
-	public ArrayList<Object> recupererInstance(String c){
+	/*public ArrayList<Object> recupererInstance(String c){
 		ArrayList<Object> objects = new ArrayList<>();
 		try {
 			Class classe = Class.forName(c);
@@ -94,6 +92,6 @@ public class Grille extends Observable {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }
