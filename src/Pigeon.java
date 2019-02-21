@@ -102,7 +102,6 @@ public class Pigeon extends JButton implements Runnable {
 				else{
 					setEtat(EtatPigeon.ENDORMI);
 				}
-				System.out.println("p : "+probabilite+"/ c : "+chance);
 			}
 			else{
 				setEtat(EtatPigeon.REVEILLE);
@@ -117,9 +116,6 @@ public class Pigeon extends JButton implements Runnable {
 
 				int y = indexNourriture%10;
 				int x = indexNourriture/10;
-
-				System.out.println(getCoordinateX()+"/"+getCoordinateY());
-
 
 				if(x < getCoordinateX()){
 					Grille.getInstance().deplacementPigeon(this, -10);

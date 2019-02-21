@@ -80,8 +80,11 @@ public class Grille extends Observable {
 		int[] destination = new int[2];
 
 		if(objetTo instanceof Nourriture) {
+			int x = ((Nourriture) objetTo).getCoordinateX();
+			int y = ((Nourriture) objetTo).getCoordinateY();
+
 			try {
-				replace(objetTo, new Case(((Case) objetTo).getCoordinateX(), ((Case) objetTo).getCoordinateY()));
+				replace(objetTo, new Case(x, y));
 			} catch(Exception e) {
 				System.out.println("Exception "+e+" occured when a pigeon eats food");
 			}
@@ -102,7 +105,7 @@ public class Grille extends Observable {
 				} catch (Exception e) {
 					System.out.println("Exception "+e+" occured when a pigeon moves");
 				}
-				
+
 				// refresh display
 				try {
 					setChanged();
@@ -110,7 +113,7 @@ public class Grille extends Observable {
 				} catch (Exception e) {
 					System.out.println("Exception "+e+" occured when the display refreshes");
 				}
-				
+
 			}
 		}
 	}
