@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Nourriture extends JButton {
 
@@ -33,6 +34,15 @@ public class Nourriture extends JButton {
 			this.setText("Périmée");
 		else
 			this.setText("bouffe");
+	}
+
+	public void checkEtatNourriture(TimeUnit timeUnit){
+		Date date = new Date();
+		long diff = date.getTime() - getT().getTime();
+		diff = timeUnit.convert(diff, TimeUnit.MILLISECONDS);
+		if(diff > 10000){
+			setEtat(EtatNourriture.PERIMEE);
+		}
 	}
 
 	public Date getT() {
