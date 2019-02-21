@@ -48,7 +48,7 @@ public class Fenetre extends JFrame implements Observer {
         int index = 0;
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                boutons[i][j] = (index <= 95) ? new Case(i, j) : new Pigeon(i, j);
+                boutons[i][j] = (index <= 99 - Integer.parseInt(Config.getPropValues("pigeon"))) ? new Case(i, j) : new Pigeon(i, j);
                 index++;
             }
         }

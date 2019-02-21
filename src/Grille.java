@@ -26,7 +26,7 @@ public class Grille extends Observable {
 	/**
 	 * Return singleton.
 	 *
-	 * @return instance
+	 * @return instance instance
 	 */
 	public static Grille getInstance()
 	{
@@ -67,31 +67,38 @@ public class Grille extends Observable {
 		notifyObservers();
 	}
 
+	/**
+	 * Deplacement pigeon.
+	 *
+	 * @param pigeon the pigeon
+	 * @param to destination index
+	 */
 	public void deplacementPigeon(Pigeon pigeon, int to) {
 		int index = Grille.getInstance().getGrille().indexOf(pigeon);
 		Object objetTo = Grille.getInstance().getGrille().get(index+to);
+		int[] destination = new int[2];
+
 		if(objetTo instanceof Nourriture) {
 			replace(objetTo, new Case(0, 0));
 		} else {
-			Collections.swap(Grille.getInstance().getGrille(), index, index+to);
-			setChanged();
-			notifyObservers();
+			if (objetTo instanceof Case) {
+				// store destination coordinates
+				destination[0] = ((Case) objetTo).getCoordinateX();
+				destination[1] = ((Case) objetTo).getCoordinateY();
+				// swap items
+				Collections.swap(Grille.getInstance().getGrille(),
+						index, index+to);
+				// swap coordinates
+				((Case) objetTo).setCoordinateX(pigeon.getCoordinateX());
+				((Case) objetTo).setCoordinateY(pigeon.getCoordinateY());
+				pigeon.setCoordinateX(destination[0]);
+				pigeon.setCoordinateY(destination[1]);
+				// refresh display
+				setChanged();
+				notifyObservers();
+			}
 		}
 
 	}
-
-	/*public ArrayList<Object> recupererInstance(String c){
-		ArrayList<Object> objects = new ArrayList<>();
-		try {
-			Class classe = Class.forName(c);
-			for(Object a : grille){
-				if(a instanceof classe){
-					objects.add(a);
-				}
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}*/
 
 }
