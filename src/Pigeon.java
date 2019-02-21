@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -80,10 +81,14 @@ public class Pigeon extends JButton implements Runnable {
 
 	@Override
 	public void run() {
+
 			ArrayList<Nourriture> nourritures = new ArrayList<>();
 			for(Object a :Grille.getInstance().getGrille()){
 				if(a instanceof Nourriture){
-					nourritures.add((Nourriture) a);
+					((Nourriture) a).checkEtatNourriture(TimeUnit.MILLISECONDS);
+					if(((Nourriture) a).getEtat().equals(EtatNourriture.FRAICHE)){
+						nourritures.add((Nourriture) a);
+					}
 				}
 			}
 
