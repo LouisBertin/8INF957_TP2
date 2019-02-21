@@ -125,10 +125,10 @@ public class Grille extends Observable {
 		ArrayList<Object> pigeons = getAllByClass(Pigeon.class);
 		ArrayList<Object> Cases = getAllByClass(Case.class);
 
-		Random rand = new Random();
-		int randomNum = rand.nextInt(Cases.size());
-
 		for (int i = 0; i < pigeons.size(); i++) {
+			Random rand = new Random();
+			int randomNum = rand.nextInt(Cases.size());
+
 			int[] destination = new int[2];
 			Case Case = (Case) Cases.get(randomNum);
 			Pigeon pigeon = (Pigeon) pigeons.get(i);
