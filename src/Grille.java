@@ -144,7 +144,10 @@ public class Grille extends Observable {
 			int pigeonIndex = getGrille().indexOf(pigeon);
 			int caseIndex = getGrille().indexOf(Case);
 			Collections.swap(getGrille(), pigeonIndex, caseIndex);
+			setChanged();
+			notifyObservers();
 		}
+
 	}
 
 	/**
