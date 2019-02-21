@@ -29,7 +29,7 @@ public class Helper {
         ArrayList<Pigeon> pigeons = Grille.getInstance().getAllByClass(Pigeon.class);
 
         while(true) {
-            probabilite = Math.random();
+            probabilite = Math.random()*0.5;
             Random r = new Random();
             chance = r.nextDouble();
             for (Pigeon p : pigeons) {
