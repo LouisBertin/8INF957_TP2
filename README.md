@@ -1,9 +1,29 @@
-### TO DO
+# Pigeons Game
 
-* Créer un fichier de config pour le projet ✅
-* Dev la fenêtre : swing ✅
-* Création d’un quadrillage ✅
-* Timer : afficher le nombre de tours ✅
-* Affichage des pigeons aléatoirement dans le quadrillage ✅
-* Gestion de la bouffe au clic : au bout de tant de cycle l’état de la bouffe change
-* Déplacement des pigeons vers la bouffe
+Un projet réalisé dans le cadre du cours de programmation objet avancée de l'UQAC.
+
+## Contexte
+
+- Simulation de pigeon avec rafraichissement dynamique de l'interface
+- Création d'une interface graphique en Java Swing
+- Respect des règles avancées de la POO
+    - Cohésion et couplage
+    - Principes avancés de la POO : SOLID
+    - Responsabilité unique
+    - Ségrégation des interfaces, etc.
+    - Attributs d’association
+    - Héritage & Délégation
+    - Programmation concurrente (Multithreading)
+    - Diagramme de classes
+    - Gestion d’exceptions
+    - Robustesse de logiciels
+    
+## Prérequis
+
+- Java SDK >= 8
+
+## Installation
+
+- Cloner le projet
+- Importez-le dans votre IDE préféré
+- Exécuter la classe main!
