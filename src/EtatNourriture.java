@@ -3,13 +3,19 @@
  */
 public enum EtatNourriture {
     /**
+     * The freshest food.
+     */
+    PLUS_FRAICHE("#2ecc71"),
+
+    /**
      * Fresh state
      */
-    FRAICHE("La nourriture est fraîche."),
+    FRAICHE("#f1c40f"),
+
     /**
      * Expired state
      */
-    PERIMEE("La nourriture est perimée.");
+    PERIMEE("#34495e");
 
     /**
      * The name.

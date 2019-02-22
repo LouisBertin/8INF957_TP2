@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +12,9 @@ public class Nourriture extends JButton {
      * Etat de la nourriture.
      */
     private EtatNourriture etat;
+    /**
+     * Date.
+     */
     private Date t;
     /**
      * X coordinate
@@ -28,9 +32,11 @@ public class Nourriture extends JButton {
      * @param coordinateY the coordinate y
      */
     public Nourriture(int coordinateX, int coordinateY) {
-        etat = EtatNourriture.FRAICHE;
+        etat = EtatNourriture.PLUS_FRAICHE;
         t = new Date();
         this.setText("Nourriture");
+        this.setBackground(Color.decode(EtatNourriture.PLUS_FRAICHE.toString()));
+        this.setOpaque(true);
 
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
@@ -52,10 +58,15 @@ public class Nourriture extends JButton {
      */
     public void setEtat(EtatNourriture etat) {
         this.etat = etat;
-        if (etat == EtatNourriture.PERIMEE)
+
+        if (etat == EtatNourriture.PERIMEE) {
             this.setText("Périmée");
-        else
-            this.setText("Nourriture");
+            this.setBackground(Color.decode(EtatNourriture.PERIMEE.toString()));
+        } else if (etat == EtatNourriture.PLUS_FRAICHE) {
+            this.setBackground(Color.decode(EtatNourriture.PLUS_FRAICHE.toString()));
+        } else if (etat == EtatNourriture.FRAICHE) {
+            this.setBackground(Color.decode(EtatNourriture.FRAICHE.toString()));
+        }
     }
 
     /**
@@ -67,6 +78,7 @@ public class Nourriture extends JButton {
         Date date = new Date();
         long diff = date.getTime() - getT().getTime();
         diff = timeUnit.convert(diff, TimeUnit.MILLISECONDS);
+
         if (diff > 10000) {
             setEtat(EtatNourriture.PERIMEE);
         }

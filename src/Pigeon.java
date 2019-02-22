@@ -92,10 +92,13 @@ public class Pigeon extends JButton implements Runnable {
     public void run() {
 
         ArrayList<Nourriture> nourritures = new ArrayList<>();
+        // remove expired foods
         for (Object a : Grille.getInstance().getGrille()) {
             if (a instanceof Nourriture) {
-                ((Nourriture) a).checkEtatNourriture(TimeUnit.MILLISECONDS);
-                if (((Nourriture) a).getEtat().equals(EtatNourriture.FRAICHE)) {
+                Nourriture n = (Nourriture) a;
+                n.checkEtatNourriture(TimeUnit.MILLISECONDS);
+
+                if (!n.getEtat().equals(EtatNourriture.PERIMEE)) {
                     nourritures.add((Nourriture) a);
                 }
             }
@@ -106,9 +109,13 @@ public class Pigeon extends JButton implements Runnable {
         } else {
             setEtat(EtatPigeon.REVEILLE);
             Nourriture choisi = nourritures.get(0);
+
+            //TODO: fonctionne aléatoirement
             for (Nourriture nourriture : nourritures) {
                 if (nourriture.getT().after(choisi.getT())) {
                     choisi = nourriture;
+                } else {
+                    nourriture.setEtat(EtatNourriture.FRAICHE);
                 }
             }
 
