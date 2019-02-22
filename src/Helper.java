@@ -28,8 +28,8 @@ public class Helper {
     public static void wakeUpPigeons() {
         ArrayList<Pigeon> pigeons = Grille.getInstance().getAllByClass(Pigeon.class);
 
-        while(true) {
-            probabilite = Math.random()*0.5;
+        while (true) {
+            probabilite = Math.random() * 0.5;
             Random r = new Random();
             chance = r.nextDouble();
             for (Pigeon p : pigeons) {

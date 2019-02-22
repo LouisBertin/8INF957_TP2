@@ -2,8 +2,8 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.*;
-import java.util.Timer;
 import java.util.Observable;
+
 /**
  * The type Fenetre.
  */
@@ -30,7 +30,6 @@ public class Fenetre extends JFrame implements Observer {
 
         // display window
         this.setVisible(true);
-        this.refresh();
     }
 
     /**
@@ -58,23 +57,8 @@ public class Fenetre extends JFrame implements Observer {
     }
 
     /**
-     * Refresh.
-     */
-    public void refresh() {
-        TimerTask task = new TimerTask() {
-
-            @Override
-            public void run() {
-                //System.out.println(3 + " seconds");
-            }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(task, new Date(), 3000);
-    }
-
-    /**
      * Build panel.
+     *
      * @param boutons
      * @param panel
      */
@@ -91,11 +75,11 @@ public class Fenetre extends JFrame implements Observer {
         // create grille singleton
         Grille.getInstance().setGrille(componentsSorted);
         Grille.getInstance().addObserver(this);
-
     }
 
     /**
      * Convert panel to grille.
+     *
      * @param boutons
      * @return
      */
@@ -138,6 +122,7 @@ public class Fenetre extends JFrame implements Observer {
 
     /**
      * Generate unique random numbers.
+     *
      * @param range
      * @param bound
      * @return
@@ -146,11 +131,11 @@ public class Fenetre extends JFrame implements Observer {
         ArrayList<Integer> list = new ArrayList<>();
         int[] numbers = new int[bound];
 
-        for (int i=1; i < range; i++) {
+        for (int i = 1; i < range; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
-        for (int i=0; i < bound; i++) {
+        for (int i = 0; i < bound; i++) {
             numbers[i] = list.get(i);
         }
 
@@ -162,13 +147,13 @@ public class Fenetre extends JFrame implements Observer {
      */
     @Override
     public void update(Observable o, Object o1) {
-    	panel.removeAll();
-    	panel.validate();
-    	for(Object objet : Grille.getInstance().getGrille()) {
-    		panel.add((Component) objet);
-    	}
-    	panel.revalidate();
-    	panel.repaint();
-    	System.out.println("Repaint window");
+        panel.removeAll();
+        panel.validate();
+        for (Object objet : Grille.getInstance().getGrille()) {
+            panel.add((Component) objet);
+        }
+        panel.revalidate();
+        panel.repaint();
+        System.out.println("Repaint window");
     }
 }

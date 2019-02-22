@@ -9,14 +9,9 @@ import java.util.Properties;
 public class Config {
 
     /**
-     * The Result.
-     */
-    static String result = "";
-
-    /**
      * The Input stream.
      */
-    static InputStream inputStream;
+    private static InputStream inputStream;
 
     /**
      * Gets prop values.
@@ -25,6 +20,7 @@ public class Config {
      * @return the prop values
      */
     public static String getPropValues(String param) {
+        String result = "";
 
         try {
             Properties prop = new Properties();
