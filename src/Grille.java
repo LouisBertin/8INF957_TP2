@@ -6,7 +6,6 @@ import java.util.Random;
 /**
  * Il s'agit du modèle de notre grille principale
  *
- * @author Orann
  */
 public class Grille extends Observable {
     /**
