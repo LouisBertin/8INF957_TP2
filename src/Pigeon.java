@@ -120,6 +120,8 @@ public class Pigeon extends JButton implements Runnable {
             for (Nourriture nourriture : nourritures) {
                 if (!nourriture.equals(choisi)) {
                     nourriture.setEtat(EtatNourriture.FRAICHE);
+                } else {
+                    nourriture.setEtat(EtatNourriture.PLUS_FRAICHE);
                 }
             }
 
