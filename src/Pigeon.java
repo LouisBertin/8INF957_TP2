@@ -110,16 +110,18 @@ public class Pigeon extends JButton implements Runnable {
             setEtat(EtatPigeon.REVEILLE);
             Nourriture choisi = nourritures.get(0);
 
-            //TODO: fonctionne aléatoirement : corrigé (à tester)
-            if(nourritures.size() > 1){
-				for (Nourriture nourriture : nourritures) {
-					if (nourriture.getT().after(choisi.getT())) {
-						choisi = nourriture;
-					} else {
-						nourriture.setEtat(EtatNourriture.FRAICHE);
-					}
-				}
-			}
+            // get freshest
+            for (Nourriture nourriture : nourritures) {
+                if (nourriture.getT().after(choisi.getT())) {
+                    choisi = nourriture;
+                }
+            }
+            // change state of others
+            for (Nourriture nourriture : nourritures) {
+                if (!nourriture.equals(choisi)) {
+                    nourriture.setEtat(EtatNourriture.FRAICHE);
+                }
+            }
 
             int indexNourriture = Grille.getInstance().getGrille().indexOf(choisi);
 
