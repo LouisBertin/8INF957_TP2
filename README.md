@@ -2,6 +2,10 @@
 
 Un projet réalisé dans le cadre du cours de programmation objet avancée de l'UQAC.
 
+> Bertin Louis <br>
+Vasse Mickaël <br>
+Weber Orann
+
 ## Contexte
 
 - Simulation de pigeon avec rafraichissement dynamique de l'interface
