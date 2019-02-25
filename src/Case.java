@@ -36,9 +36,13 @@ public class Case extends JButton implements ActionListener {
      * @param e
      */
     public void actionPerformed(ActionEvent e) {
-        Nourriture nourriture = new Nourriture(this.coordinateX, this.coordinateY);
-
-        Grille.getInstance().replace(this, nourriture);
+    	try {
+    		Nourriture nourriture = new Nourriture(this.coordinateX, this.coordinateY);
+            Grille.getInstance().replace(this, nourriture);
+    	} catch (Exception ex) {
+    		System.out.println("Exception " + ex + " occured when we click on a button for adding some food");
+    	}
+        
     }
 
     /**

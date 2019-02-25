@@ -90,56 +90,60 @@ public class Pigeon extends JButton implements Runnable {
 
     @Override
     public void run() {
+    	try {
+    		ArrayList<Nourriture> nourritures = new ArrayList<>();
+            // remove expired foods
+            for (Object a : Grille.getInstance().getGrille()) {
+                if (a instanceof Nourriture) {
+                    Nourriture n = (Nourriture) a;
+                    n.checkEtatNourriture(TimeUnit.MILLISECONDS);
 
-        ArrayList<Nourriture> nourritures = new ArrayList<>();
-        // remove expired foods
-        for (Object a : Grille.getInstance().getGrille()) {
-            if (a instanceof Nourriture) {
-                Nourriture n = (Nourriture) a;
-                n.checkEtatNourriture(TimeUnit.MILLISECONDS);
-
-                if (!n.getEtat().equals(EtatNourriture.PERIMEE)) {
-                    nourritures.add((Nourriture) a);
-                }
-            }
-        }
-
-        if (nourritures.isEmpty()) {
-            setEtat(EtatPigeon.ENDORMI);
-        } else {
-            setEtat(EtatPigeon.REVEILLE);
-            Nourriture choisi = nourritures.get(0);
-
-            // get freshest
-            for (Nourriture nourriture : nourritures) {
-                if (nourriture.getT().after(choisi.getT())) {
-                    choisi = nourriture;
-                }
-            }
-            // change state of others
-            for (Nourriture nourriture : nourritures) {
-                if (!nourriture.equals(choisi)) {
-                    nourriture.setEtat(EtatNourriture.FRAICHE);
-                } else {
-                    nourriture.setEtat(EtatNourriture.PLUS_FRAICHE);
+                    if (!n.getEtat().equals(EtatNourriture.PERIMEE)) {
+                        nourritures.add((Nourriture) a);
+                    }
                 }
             }
 
-            int indexNourriture = Grille.getInstance().getGrille().indexOf(choisi);
+            if (nourritures.isEmpty()) {
+                setEtat(EtatPigeon.ENDORMI);
+            } else {
+                setEtat(EtatPigeon.REVEILLE);
+                Nourriture choisi = nourritures.get(0);
 
-            int y = indexNourriture % 10;
-            int x = indexNourriture / 10;
+                // get freshest
+                for (Nourriture nourriture : nourritures) {
+                    if (nourriture.getT().after(choisi.getT())) {
+                        choisi = nourriture;
+                    }
+                }
+                // change state of others
+                for (Nourriture nourriture : nourritures) {
+                    if (!nourriture.equals(choisi)) {
+                        nourriture.setEtat(EtatNourriture.FRAICHE);
+                    } else {
+                        nourriture.setEtat(EtatNourriture.PLUS_FRAICHE);
+                    }
+                }
 
-            if (x < getCoordinateX()) {
-                Grille.getInstance().deplacementPigeon(this, -10);
-            } else if (x > getCoordinateX()) {
-                Grille.getInstance().deplacementPigeon(this, 10);
-            } else if (y < getCoordinateY()) {
-                Grille.getInstance().deplacementPigeon(this, -1);
-            } else if (y > getCoordinateY()) {
-                Grille.getInstance().deplacementPigeon(this, 1);
-            }
+                int indexNourriture = Grille.getInstance().getGrille().indexOf(choisi);
 
-        }
+                int y = indexNourriture % 10;
+                int x = indexNourriture / 10;
+
+                if (x < getCoordinateX()) {
+                    Grille.getInstance().deplacementPigeon(this, -10);
+                } else if (x > getCoordinateX()) {
+                    Grille.getInstance().deplacementPigeon(this, 10);
+                } else if (y < getCoordinateY()) {
+                    Grille.getInstance().deplacementPigeon(this, -1);
+                } else if (y > getCoordinateY()) {
+                    Grille.getInstance().deplacementPigeon(this, 1);
+                }
+
+            }    		
+    	} catch(Exception e) {
+    		System.out.println("Exception " + e + " occured in pigeon's thread");
+    	}
+        
     }
 }

@@ -13,6 +13,11 @@ public class Main {
         // init game
         Fenetre fenetre = new Fenetre();
         // pigeons awakening
-        Helper.wakeUpPigeons();
+        try {
+        	Helper.wakeUpPigeons();
+        } catch (Exception e) {
+            System.out.println("Exception " + e + " occured when we wake up the pigeons");
+        }
+        
     }
 }

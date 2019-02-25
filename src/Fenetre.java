@@ -53,7 +53,12 @@ public class Fenetre extends JFrame implements Observer {
         }
 
         // build panel
-        this.buildPanel(boutons, panel);
+        try {
+        	this.buildPanel(boutons, panel);
+        } catch (Exception e) {
+            System.out.println("Exception " + e + " occured when we build the panel");
+        }
+        
     }
 
     /**
@@ -147,13 +152,17 @@ public class Fenetre extends JFrame implements Observer {
      */
     @Override
     public void update(Observable o, Object o1) {
-        panel.removeAll();
-        panel.validate();
-        for (Object objet : Grille.getInstance().getGrille()) {
-            panel.add((Component) objet);
-        }
-        panel.revalidate();
-        panel.repaint();
-        System.out.println("Repaint window");
+    	try {
+    		panel.removeAll();
+            panel.validate();
+            for (Object objet : Grille.getInstance().getGrille()) {
+                panel.add((Component) objet);
+            }
+            panel.revalidate();
+            panel.repaint();
+            System.out.println("Repaint window");    		
+    	} catch (Exception e) {
+            System.out.println("Exception " + e + " occured when we repaint the window");
+        }        
     }
 }
