@@ -31,3 +31,8 @@ Weber Orann
 - Cloner le projet
 - Importez-le dans votre IDE préféré
 - Exécuter la classe main!
+
+## Utilisation
+
+- L'interface graphique se lance
+- Cliquer sur une case pour déposer de la nourriture
